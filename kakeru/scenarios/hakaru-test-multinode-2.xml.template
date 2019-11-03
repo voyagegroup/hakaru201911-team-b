@@ -35,19 +35,19 @@
   <sessions>
     <session name="open" probability="90" type="ts_http">
       <request>
-        <http url="{{TARGET_PATH}}?name=open&amp;value=0" method="GET" version="1.1" >
+        <http url="/hakaru?name=open&amp;value=0" method="GET" version="1.1" >
         </http>
       </request>
     </session>
     <session name="purchase120" probability="9" type="ts_http">
       <request>
-        <http url="{{TARGET_PATH}}?name=purchase&amp;value=120" method="GET" version="1.1" >
+        <http url="/hakaru?name=purchase&amp;value=120" method="GET" version="1.1" >
         </http>
       </request>
     </session>
     <session name="purchase960" probability="1" type="ts_http">
       <request>
-        <http url="{{TARGET_PATH}}?name=purchase&amp;value=960" method="GET" version="1.1" >
+        <http url="/hakaru?name=purchase&amp;value=960" method="GET" version="1.1" >
         </http>
       </request>
     </session>
