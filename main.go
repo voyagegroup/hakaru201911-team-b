@@ -1,13 +1,14 @@
 package main
 
 import (
-	"net/http"
 	"log"
+	"net/http"
 
 	"database/sql"
 
-	_ "github.com/go-sql-driver/mysql"
 	"os"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
@@ -21,6 +22,7 @@ func main() {
 		if err != nil {
 			panic(err.Error())
 		}
+		db.SetMaxOpenConns(80)
 		defer db.Close()
 
 		stmt, e := db.Prepare("INSERT INTO eventlog(at, name, value) values(NOW(), ?, ?)")
