@@ -4,39 +4,35 @@ import (
 	"log"
 	"net/http"
 
-	"database/sql"
-
-	"os"
-
 	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
-	dataSourceName := os.Getenv("HAKARU_DATASOURCENAME")
-	if dataSourceName == "" {
-		dataSourceName = "root:password@tcp(127.0.0.1:13306)/hakaru"
-	}
-
-	db, err := sql.Open("mysql", dataSourceName)
-	if err != nil {
-		panic(err.Error())
-	}
-	db.SetMaxIdleConns(10)
-	db.SetMaxOpenConns(10)
-	defer db.Close()
-
-	stmt, e := db.Prepare("INSERT INTO eventlog(at, name, value) values(NOW(), ?, ?)")
-	if e != nil {
-		panic(e.Error())
-	}
+	//	dataSourceName := os.Getenv("HAKARU_DATASOURCENAME")
+	//	if dataSourceName == "" {
+	//		dataSourceName = "root:password@tcp(127.0.0.1:13306)/hakaru"
+	//	}
+	//
+	//	db, err := sql.Open("mysql", dataSourceName)
+	//	if err != nil {
+	//		panic(err.Error())
+	//	}
+	//	db.SetMaxIdleConns(10)
+	//	db.SetMaxOpenConns(10)
+	//	defer db.Close()
+	//
+	//	stmt, e := db.Prepare("INSERT INTO eventlog(at, name, value) values(NOW(), ?, ?)")
+	//	if e != nil {
+	//		panic(e.Error())
+	//	}
 
 	defer stmt.Close()
 
 	hakaruHandler := func(w http.ResponseWriter, r *http.Request) {
-		name := r.URL.Query().Get("name")
-		value := r.URL.Query().Get("value")
-
-		_, _ = stmt.Exec(name, value)
+		//		name := r.URL.Query().Get("name")
+		//		value := r.URL.Query().Get("value")
+		//
+		//		_, _ = stmt.Exec(name, value)
 
 		origin := r.Header.Get("Origin")
 		if origin != "" {
