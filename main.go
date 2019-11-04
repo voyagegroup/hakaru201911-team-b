@@ -26,7 +26,7 @@ func main() {
 	//		panic(e.Error())
 	//	}
 
-	defer stmt.Close()
+	//defer stmt.Close()
 
 	hakaruHandler := func(w http.ResponseWriter, r *http.Request) {
 		//		name := r.URL.Query().Get("name")
