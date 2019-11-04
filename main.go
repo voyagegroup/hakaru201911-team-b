@@ -21,7 +21,6 @@ func main() {
 	if err != nil {
 		panic(err.Error())
 	}
-	db.SetMaxIdleConns(65000)
 	db.SetMaxOpenConns(10)
 	defer db.Close()
 
