@@ -24,14 +24,14 @@ func main() {
 	db.SetMaxOpenConns(10)
 	defer db.Close()
 
+	stmt, e := db.Prepare("INSERT INTO eventlog(at, name, value) values(NOW(), ?, ?)")
+	if e != nil {
+		panic(e.Error())
+	}
+
+	defer stmt.Close()
+
 	hakaruHandler := func(w http.ResponseWriter, r *http.Request) {
-		stmt, e := db.Prepare("INSERT INTO eventlog(at, name, value) values(NOW(), ?, ?)")
-		if e != nil {
-			panic(e.Error())
-		}
-
-		defer stmt.Close()
-
 		name := r.URL.Query().Get("name")
 		value := r.URL.Query().Get("value")
 
